@@ -1,0 +1,199 @@
+/* Tipografía general */
+
+
+/* Títulos */
+h1 {
+  font-size: 36px; /* Tamaño para títulos principales */
+  color: #fff;
+  text-align: center;
+  margin: 20px 0;
+}
+
+/* Subtítulos */
+h2 {
+  font-size: 28px; /* Tamaño para subtítulos */
+  color: #2F80ED; /* Subtítulos en azul */
+  margin: 10px 0;
+}
+
+/* Cuerpo de texto */
+p {
+  font-size: 18px; /* Cuerpo de texto más grande */
+  color: #B0B0D1;
+  line-height: 1.5;
+}
+
+/* Notas de pie de página/Enlaces pequeños */
+.small-text {
+  font-size: 14px; /* Notas de pie de página/Enlaces pequeños */
+  color: #B0B0D1;
+}
+
+/* Contenedor principal de los libros */
+.user-books-container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Barra de búsqueda */
+.search-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+
+.search-bar {
+  width: 70%;
+  padding: 10px;
+  border-radius: 26px;
+  border: 2px solid #2F80ED; /* Borde azul */
+  background-color: #fff; /* Fondo blanco para mayor contraste */
+  color: #333; /* Color de texto oscuro */
+  font-size: 16px; /* Tamaño de texto */
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.2); /* Sombra para darle más visibilidad */
+}
+
+.search-bar::placeholder {
+  color: #888; /* Color del placeholder más suave */
+}
+
+/* Botón de búsqueda o agregar (si aplica) */
+.button-primary {
+  background-color: #2F80ED;
+  color: white;
+  border: none;
+  border-radius: 10px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+
+.button-primary {
+  background-color: #2F80ED;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 10px 20px;
+  cursor: pointer;
+  font-size: 16px; /* Alineación con cuerpo de texto */
+}
+
+/* Estilo de las tarjetas de libros en una cuadrícula */
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+}
+
+.book-card {
+  background-color: #26266A;
+  border-radius: 10px;
+  padding: 15px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+}
+
+.book-card-inside {
+  text-align: center;
+}
+
+/* Imagen del libro */
+.book-content img {
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Detalles del libro */
+.book-details h2 {
+  font-size: 28px; /* Subtítulo */
+  margin: 10px 0 5px;
+}
+
+.book-details p {
+  font-size: 16px; /* Cuerpo de texto */
+  color: #B0B0D1;
+  margin: 5px 0;
+}
+
+.book-description p {
+  font-size: 16px; /* Descripción */
+  color: #B0B0D1;
+}
+
+/* Botones de acción */
+.button-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 15px;
+}
+
+.book-card .button-danger,
+.book-card .button-primary {
+  background-color: #EB5757;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  padding: 8px 15px;
+  cursor: pointer;
+  font-size: 14px; /* Tamaño de botones */
+}
+
+.book-card .button-primary {
+  background-color: #2F80ED;
+  margin-right: 10px;
+}
+
+/* Sinopsis */
+.sinopsis {
+  font-size: 16px; /* Cuerpo de texto */
+  color: #B0B0D1;
+  margin-top: 10px;
+  text-align: justify;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination a {
+  font-size: 14px; /* Tamaño para enlaces pequeños */
+  color: #e44343;
+  padding: 10px 15px;
+  text-decoration: none;
+  background-color: #2F80ED;
+  border-radius: 5px;
+  margin: 0 5px;
+}
+
+.pagination a.active {
+  background-color: #EB5757;
+}
+
+/* Estilo para los íconos en book-actions */
+.book-actions .fa-edit,
+.book-actions .fa-trash {
+    color: #fff; /* Color blanco para los íconos */
+    cursor: pointer;
+    font-size: 18px; /* Tamaño del ícono */
+    margin: 0 5px;
+}
+
+/* Para asegurarnos que los botones (enlaces) que envuelven los íconos también tengan color blanco */
+.book-actions .button {
+    color: #fff; /* Color blanco para el enlace que contiene los iconos */
+    background: none; /* Eliminar cualquier fondo de los enlaces */
+    border: none; /* Eliminar bordes */
+    padding: 0;
+}
+

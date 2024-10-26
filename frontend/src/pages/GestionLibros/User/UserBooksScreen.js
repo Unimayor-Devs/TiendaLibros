@@ -6,7 +6,8 @@ import Navbar from '../../../components/Navbar';
 import { AuthContext } from '../../../context/AuthContext'; // Importa el contexto de autenticación
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faPlus, faTrash } from '@fortawesome/free-solid-svg-icons';
-
+import '../../../../src/components/Navbar.css';
+//import'./UserBookScreenPrincipal.css'
 const UserBookScreen = () => {
   const navigate = useNavigate();
   const { userRole } = useContext(AuthContext); // Obtén el rol del usuario del contexto de autenticación
@@ -84,16 +85,7 @@ const UserBookScreen = () => {
             sortedBooks.map(book => (
               <div key={book.id} className="book-card">
                 <div className="book-card-inside">
-                  <div className="book-actions">
-                    {userRole === 'admin' && (
-                      <>
-                        <Link to={`/books/${book.id}/edit`} className="button button-primary">
-                          <FontAwesomeIcon icon={faEdit}/>
-                        </Link>
-                        <FontAwesomeIcon icon={faTrash} className="button button-danger" onClick={() => handleDeleteBook(book.id)} />
-                      </>
-                    )}
-                  </div>
+                  
                   <div className="book-content">
                     <img src={book.imageUrl} alt={book.title} />
                     <div className="book-details">
@@ -105,6 +97,16 @@ const UserBookScreen = () => {
                   </div>
                   <div className="book-description">
                     <p>{book.description}</p>
+                  </div>
+                  <div className="book-actions">
+                    {userRole === 'admin' && (
+                      <>
+                        <Link to={`/books/${book.id}/edit`} className="button">
+                          <FontAwesomeIcon icon={faEdit}/>
+                        </Link>
+                        <FontAwesomeIcon icon={faTrash} className="button" onClick={() => handleDeleteBook(book.id)} />
+                      </>
+                    )}
                   </div>
                 </div>
               </div>
