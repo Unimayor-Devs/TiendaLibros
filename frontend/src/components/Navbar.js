@@ -3,14 +3,14 @@ import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faBook, faBoxes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-//import './Navbar.css';
+import './Navbar.css'; // Asegúrate de importar los estilos CSS
 import logo from '../pages/Public/assets/logo.png';
 import { AuthContext } from '../context/AuthContext';
 
 const Navbar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const { user, userRole } = useContext(AuthContext); // Usa el contexto de autenticación
+  const { userRole } = useContext(AuthContext); // Obtiene el rol del usuario
 
   const handleSignOut = async () => {
     try {
@@ -23,12 +23,12 @@ const Navbar = () => {
   };
 
   return (
-    <nav className="Navbar">
+    <nav className="navbar">
       <div className="logo-container">
         <img src={logo} alt="Logo Unimayor" className="logo" />
-        <p>Tienda de Libros Unimayor</p>
+        <p className="logo-text">Tienda de Libros Unimayor</p>
       </div>
-      <ul>
+      <ul className="navbar-links">
         <li>
           <Link to="/home">
             <FontAwesomeIcon icon={faHome} /> Inicio
@@ -51,7 +51,7 @@ const Navbar = () => {
         </li>
         <li>
           <button className="logout-button" onClick={handleSignOut}>
-            <FontAwesomeIcon icon={faSignOutAlt} />
+            <FontAwesomeIcon icon={faSignOutAlt} /> Salir
           </button>
         </li>
       </ul>

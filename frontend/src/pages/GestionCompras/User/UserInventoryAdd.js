@@ -2,38 +2,38 @@ import React, { useState, useEffect } from 'react';
 import { useNavigate, useParams } from 'react-router-dom';
 import { getBookById, assignInvBookId, editBookAndInventory } from '../../../services/inventoryServices';
 import '../../GestionLibros/User/AddBookScreen';
-
+import "./UserInventoryScreen.css";
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faPlus, faTimes } from '@fortawesome/free-solid-svg-icons'; // Íconos para los botones
+import "./UserInventoryScreen.css"
 const UserInventoryAdd = () => {
   const navigate = useNavigate();
-  const { bookId } = useParams(); // Obtener el ID del libro de los parámetros de la URL
+  const { bookId } = useParams();
   const [inventoryData, setInventoryData] = useState({
-    invBookId: '', // Este campo debería ser bloqueado y generado automáticamente
+    invBookId: '',
     invCantStock: '',
-    invStatus: 'Disponible', // Por defecto, el estado será 'Disponible'
-    invDateAdd: new Date().toISOString().split('T')[0] // Fecha actual al guardar
+    invStatus: 'Disponible',
+    invDateAdd: new Date().toISOString().split('T')[0],
   });
   const [bookData, setBookData] = useState(null);
 
   useEffect(() => {
     const fetchBookData = async () => {
       try {
-        const book = await getBookById(bookId); // Obtener información del libro por su ID
+        const book = await getBookById(bookId);
         setBookData(book);
-        const invBookId = await assignInvBookId(book.type); // Asignar invBookId basado en el tipo de libro
-        setInventoryData({ ...inventoryData, invBookId }); // Actualizar el estado con el invBookId asignado
+        const invBookId = await assignInvBookId(book.type);
+        setInventoryData({ ...inventoryData, invBookId });
       } catch (error) {
         console.error('Error fetching book data:', error);
       }
     };
-
     fetchBookData();
-  }, []);
+  }, [bookId]);
 
   const handleChange = (e) => {
     const { name, value } = e.target;
-    if (name === 'invCantStock' && value < 0) {
-      return;
-    }
+    if (name === 'invCantStock' && value < 0) return;
     setInventoryData({ ...inventoryData, [name]: value });
   };
 
@@ -42,10 +42,9 @@ const UserInventoryAdd = () => {
     const confirmAdd = window.confirm('¿Está seguro de agregar este libro al inventario?');
     if (confirmAdd) {
       try {
-        await editBookAndInventory(bookId, inventoryData); // Editar el libro y actualizar su inventario
-        console.log('Libro agregado al inventario:', inventoryData);
+        await editBookAndInventory(bookId, inventoryData);
         alert('Libro agregado al inventario exitosamente');
-        navigate('/inventory/books'); // Redirige al usuario de vuelta a la página del inventario
+        navigate('/inventory/books');
       } catch (error) {
         console.error('Error al agregar libro al inventario:', error);
       }
@@ -53,21 +52,20 @@ const UserInventoryAdd = () => {
   };
 
   const handleCancel = () => {
-    navigate('/inventory/books'); // Si el usuario decide cancelar, simplemente lo redirigimos de vuelta a la página del inventario
+    navigate('/inventory/books');
   };
 
   return (
-    <div className="edit-book-container">
+    <div className="form-container">
       <h2>Agregar Libro al Inventario</h2>
-      <form onSubmit={handleSubmit}>
+      <form className="inventory-form" onSubmit={handleSubmit}>
         <div className="form-group">
           <label>ID del Libro</label>
           <input
             type="text"
             name="invBookId"
             value={inventoryData.invBookId}
-            onChange={handleChange}
-            readOnly // Bloqueado para edición
+            readOnly
             required
           />
         </div>
@@ -84,7 +82,7 @@ const UserInventoryAdd = () => {
         <div className="form-group">
           <label>Estado</label>
           <select
-            className="form-select" // Añade una clase para el CSS
+            className="form-select"
             name="invStatus"
             value={inventoryData.invStatus}
             onChange={handleChange}
@@ -95,8 +93,14 @@ const UserInventoryAdd = () => {
             <option value="Agotado">Agotado</option>
           </select>
         </div>
-        <button type="submit">Agregar al Inventario</button>
-        <button type="button" onClick={handleCancel}>Cancelar</button>
+        <div className="form-actions">
+          <button type="submit" className="btn btn-success">
+            <FontAwesomeIcon icon={faPlus} /> Agregar
+          </button>
+          <button type="button" className="btn btn-danger" onClick={handleCancel}>
+            <FontAwesomeIcon icon={faTimes} /> Cancelar
+          </button>
+        </div>
       </form>
     </div>
   );

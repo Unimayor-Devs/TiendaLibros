@@ -7,7 +7,7 @@ import { AuthContext } from '../../../context/AuthContext'; // Importa el contex
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faEdit, faPlus, faShoppingCart, faCartPlus } from '@fortawesome/free-solid-svg-icons'; // Agrega el icono del carrito de compras
 import CartView from './CartView'; // Importa el componente CartView
-//import "./UserInventoryScreen.css"
+import "./UserInventoryScreen.css"
 
 const UserInventoryScreen = () => {
   const navigate = useNavigate();
@@ -122,11 +122,40 @@ const UserInventoryScreen = () => {
           />
         )}
         {userRole !== 'admin' && (
-          <div className="cart-container">
+          /*<div className="cart-container">
             <button className="button button-primary button-carrito" onClick={handleToggleCart}>
               <FontAwesomeIcon icon={faShoppingCart} /> Carrito ({cart.length})
             </button>
+          </div>*/
+          <div className="cards-container">
+          <div className="card">
+            <img src="ruta-de-imagen" alt="Libro" />
+            <div className="card-content">
+              <h3 className="card-title">Aprendiendo React</h3>
+              <div className="card-info">
+                <p><strong>ID Inventario:</strong> GUI-1</p>
+                <p><strong>Autor:</strong> Carlos Azaustre</p>
+                <p><strong>Tipo:</strong> Guía Práctica</p>
+                <p><strong>Valor:</strong> $70.000</p>
+                <p><strong>Cantidad:</strong> 0</p>
+                <p><strong>Estado:</strong> Agotado</p>
+                <p><strong>Actualización:</strong> 2024-05-29</p>
+              </div>
+            </div>
+
+            {/* Ícono de edición */}
+            <div className="edit-icon">
+              <FontAwesomeIcon icon="pen" />
+            </div>
+
+            {/* Botones de acción */}
+            <div className="card-actions">
+              <button className="save-btn">Guardar cambios</button>
+              <button className="delete-btn">Eliminar</button>
+            </div>
           </div>
+        </div>
+
         )}
         <div className="search-bar-container">
           <input
@@ -178,6 +207,12 @@ const UserInventoryScreen = () => {
                       <p><strong>Estado:</strong> {book.invStatus}</p>
                       <p><strong>Actualización:</strong> {book.invDateAdd}</p>
                     </div>
+                    
+                    <div className="button-group">
+                      <button className="button button-primary">Guardar cambios</button>
+                      <button className="button">Eliminar</button>
+                    </div>
+
                   </div>
                   <div className="book-description">
                     <p>{book.description}</p>

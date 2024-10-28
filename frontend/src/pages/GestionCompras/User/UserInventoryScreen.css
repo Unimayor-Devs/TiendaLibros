@@ -1,0 +1,373 @@
+/* Estilos generales */
+body {
+  margin: 0;
+  font-family: Arial, sans-serif;
+  background-color: #2e2e2e;
+  color: white;
+}
+
+/* Contenedor principal */
+.user-books-container {
+  width: 80%;
+  margin: 2rem auto;
+  background-color: #3f3f3f;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+.edit-book-container {
+  width: 80%;
+  margin: 2rem auto;
+  background-color: #3f3f3f;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 0 15px rgba(0, 0, 0, 0.5);
+}
+
+h1 {
+  text-align: center;
+  margin-bottom: 1.5rem;
+}
+
+/* Input y botones */
+.search-bar-container {
+  /*display: flex;
+  justify-content: space-between;
+  margin-bottom: 1rem;*/
+/*n_anexo*/
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #ffffff;
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 1.5rem;
+}
+
+/*N_stilo*/
+/* Estilo del formulario */
+form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-group label {
+  font-size: 1rem;
+  color: #b3b3b3;
+}
+
+input, select {
+  padding: 10px;
+  font-size: 1rem;
+  border: 1px solid #333;
+  border-radius: 5px;
+  background-color: #2c2c2c;
+  color: #e0e0e0;
+  transition: border 0.3s;
+}
+
+input:focus, select:focus {
+  border-color: #6200ea;
+  outline: none;
+}
+
+/**/
+
+.search-bar {
+  width: 70%;
+  padding: 0.5rem;
+  border-radius: 5px;
+  border: none;
+}
+/*Estilo botones*/
+.button {
+  /*padding: 0.5rem 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;*/
+
+  /*n_button*/
+  padding: 12px 20px;
+  font-size: 1rem;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.3s, transform 0.2s;
+  font-weight: bold;
+
+}
+
+.button-primary {
+  background-color: #1b1e57;
+  color: white;
+}
+
+.button-carrito {
+  background-color: #2196f3;
+}
+
+.cart-container {
+  text-align: right;
+  margin-bottom: 1rem;
+}
+
+/*otros button*/
+
+button[type="submit"] {
+  background-color: #1b1e57;
+  color: white;
+}
+
+button[type="submit"]:hover {
+  background-color: #5f6464;
+}
+
+button[type="button"] {
+  background-color: #1b1e57;;
+  color: white;
+}
+
+button[type="button"]:hover {
+  background-color: #575455;
+}
+
+/*mod navbar*/
+
+/* Lista de libros */
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 1rem;
+}
+
+.book-card {
+  background-color: #505050;
+  padding: 1rem;
+  border-radius: 8px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  transition: transform 0.2s, background-color 0.3s;
+  cursor: pointer;
+}
+
+.book-card-inside {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.book-details {
+  margin-top: 0.5rem;
+}
+
+.book-content img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 8px;
+}
+
+.book-description {
+  margin-top: 1rem;
+  font-size: 0.9rem;
+  color: #cfcfcf;
+}
+
+.no-books-message {
+  text-align: center;
+  font-style: italic;
+  color: #bbb;
+}
+
+.book-card:hover {
+  background-color: #3a3a3a;
+  transform: scale(1.05);
+}
+
+.book-image {
+  width: 100%;
+  height: auto;
+  border-radius: 5px;
+}
+
+.book-actions {
+  margin-top: 1rem;
+  display: flex;
+  justify-content: space-between;
+}
+
+/* Modal para confirmar cambios */
+.modal-overlay {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background-color: rgba(0, 0, 0, 0.5);
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+.modal {
+  background-color: #fff;
+  color: black;
+  padding: 2rem;
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  text-align: center;
+}
+
+.modal button {
+  margin: 0.5rem;
+}
+
+.button-group {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+
+/*VV*/
+/* Contenedor general de las tarjetas */
+.cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: 20px;
+  padding: 20px;
+  justify-items: center;
+}
+
+/* Estilo individual de cada tarjeta */
+.card {
+  background-color: #3d3d3d;
+  color: white;
+  border-radius: 10px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+  width: 300px;
+  display: flex;
+  flex-direction: column;
+  position: relative; /* Para posicionar el ícono de edición */
+  padding: 15px;
+}
+
+/* Imagen de la tarjeta */
+.card img {
+  width: 100%;
+  height: 200px;
+  object-fit: cover;
+  border-radius: 10px;
+}
+
+/* Ícono de edición */
+.edit-icon {
+  position: absolute;
+  top: 10px;
+  right: 10px;
+  background-color: #28a745;
+  padding: 8px;
+  border-radius: 50%;
+  cursor: pointer;
+  color: white;
+}
+
+/* Contenido de la tarjeta */
+.card-content {
+  margin-top: 10px;
+}
+
+/* Título del libro */
+.card-title {
+  font-size: 1.2rem;
+  font-weight: bold;
+  margin-bottom: 10px;
+}
+
+/* Información adicional */
+.card-info p {
+  margin: 5px 0;
+  font-size: 0.9rem;
+  line-height: 1.4;
+}
+
+/* Contenedor de los botones */
+.card-actions {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 15px;
+}
+
+/* Estilos para los botones */
+.card-actions button {
+  padding: 10px 12px;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  font-weight: bold;
+  color: white;
+}
+
+.save-btn {
+  background-color: #28a745;
+}
+
+/*.delete-btn {
+  background-color: #dc3545;
+}*/
+
+.card-actions button:hover {
+  opacity: 0.9;
+}
+
+/*InventoryBooks css*/
+
+/*Responsiv*/
+
+/* Responsividad */
+@media (max-width: 768px) {
+  .edit-book-container {
+    margin: 1rem auto;
+    padding: 20px;
+    margin: 90%;
+  }
+
+  .navbar {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+}
+
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Centra los elementos verticalmente */
+  padding: 1rem;
+  background-color: #1b1e57;
+}
+
+.navbar div {
+  display: flex;
+}
+
+.spaced-links {
+  margin-right: 20px;
+}
+.button-group{
+  flex-direction: column;
+  gap: 10px;
+  display: flex;
+  justify-content: space-between;
+  margin-top: 1rem;
+}
+.spaced-links {
+  margin-right: 20px;
+  color: white;
+  text-decoration: none;
+}
+
+.spaced-links:hover {
+  text-decoration: underline;
+}
