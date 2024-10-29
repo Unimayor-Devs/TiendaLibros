@@ -1,0 +1,229 @@
+/* Variables CSS */
+:root {
+  --background-color: #404040;
+  --text-color: #fff;
+  --card-background: #505050;
+  --button-background: #fff;
+  --button-hover: #f0f0f0;
+  --small-text-color: #D0D0D0;
+}
+
+/* Estilos generales */
+body {
+  font-family: 'Merriweather', serif;
+  background-color: var(--background-color);
+  color: var(--text-color);
+  margin: 0;
+  padding: 0;
+  font-size: 16px;
+}
+
+h1 {
+  font-size: 36px;
+  color: var(--text-color);
+  text-align: center;
+  margin: 1.25rem 0;
+}
+
+h2 {
+  font-size: 28px;
+  color: var(--text-color);
+  margin: 20px 0;
+}
+
+h3 {
+  font-size: 24px;
+  color: var(--text-color);
+  margin: 20px 0;
+}
+
+/* Cuerpo de texto */
+p {
+  font-size: 18px;
+  margin: 10px 0;
+}
+
+.small-text {
+  font-size: 14px;
+  color: var(--small-text-color);
+}
+
+/* Contenedor principal de los libros */
+.user-books-container {
+  max-width: 100%;
+  margin: 0 auto;
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+/* Barra de búsqueda */
+.search-bar-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  flex-wrap: wrap;
+}
+
+.search-bar {
+  width: 100%;
+  max-width: 600px;
+  padding: 0.625rem;
+  border-radius: 5px;
+  border: none;
+  font-size: 1rem;
+}
+
+/* Estilos para botones */
+.button-primary, .button-danger {
+  background-color: var(--button-background);
+  color: black;
+  border: 2px solid black;
+  border-radius: 9px;
+  padding: 0.9000rem 1.25rem;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+}
+
+.button-primary:hover, .button-danger:hover {
+  background-color: var(--button-hover);
+}
+
+/* Estilo de las tarjetas de libros en una cuadrícula */
+.book-list {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+  gap: 20px;
+  width: 100%;
+}
+
+.book-card {
+  background-color: var(--card-background);
+  border-radius: 30px;
+  padding: 35px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.9);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.book-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 8px 16px rgba(0, 0, 0, 0.4);
+}
+
+.book-card-inside {
+  text-align: center;
+}
+
+.book-content img {
+  width: 100px;
+  height: auto;
+  margin: 0 auto;
+}
+
+.book-details h2 {
+  color: var(--text-color);
+  margin: 10px 0 5px;
+}
+
+.book-details p {
+  margin: 5px 0;
+  font-size: 16px;
+  color: var(--small-text-color);
+}
+
+.book-description p {
+  margin-top: 20px;
+  font-size: 14px;
+  color: var(--small-text-color);
+}
+
+/* Botones de acción */
+.button-container {
+  display: flex;
+  justify-content: space-between;
+  align-items: flex-end;
+  margin-top: 30px;
+  width: 100%;
+}
+
+.button-container .button-danger,
+.button-container .button-primary {
+  margin: 0 5px;
+  flex-grow: 1;
+}
+
+/* Estilo para la sinopsis */
+.sinopsis {
+  font-size: 12px;
+  color: var(--small-text-color);
+  margin-top: 10px;
+  text-align: justify;
+}
+
+/* Paginación */
+.pagination {
+  display: flex;
+  justify-content: center;
+  margin: 20px 0;
+}
+
+.pagination a {
+  color: var(--text-color);
+  padding: 10px 15px;
+  text-decoration: none;
+  background-color: var(--button-background);
+  border-radius: 5px;
+  margin: 0 5px;
+  transition: background-color 0.3s ease;
+}
+
+.pagination a:hover {
+  background-color: var(--button-hover);
+}
+
+.pagination a.active {
+  background-color: var(--button-background);
+}
+
+/* Estilos de enfoque para accesibilidad */
+.button-primary:focus,
+.button-danger:focus {
+  outline: 2px solid var(--text-color);
+  outline-offset: 2px;
+}
+
+/* Ajustes para pantallas pequeñas */
+@media (max-width: 768px) {
+  .search-bar {
+    width: 100%;
+  }
+
+  .book-list {
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+  }
+}
+
+@media (max-width: 480px) {
+  body {
+    padding: 1rem;
+  }
+
+  h1 {
+    font-size: 28px;
+  }
+
+  h2 {
+    font-size: 24px;
+  }
+
+  h3 {
+    font-size: 20px;
+  }
+
+  .button-primary, .button-danger {
+    font-size: 14px;
+  }
+}
