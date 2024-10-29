@@ -4,8 +4,8 @@ import { updateUser, getUser } from '../../../services/userService';
 import { getDocs, collection } from 'firebase/firestore';
 import { firebaseFirestore } from '../../../services/FirebaseService';
 import { AuthContext } from '../../../context/AuthContext';
-import { FaLock, FaEye, FaEyeSlash, FaUserCircle, FaEnvelope,FaPhone, FaBuilding, FaCity, FaArrowLeft  } from 'react-icons/fa';
-//import './EditUserScreen.css';
+import { FaTimesCircle, FaUserCircle, FaEnvelope,FaPhone, FaBuilding, FaCity, FaArrowLeft, FaSave ,FaBuromobelexperte} from 'react-icons/fa';
+import './EditUserScreen.css';
 
 const EditUserScreen = () => {
   const { user } = useContext(AuthContext);
@@ -91,8 +91,12 @@ const EditUserScreen = () => {
 
   return (
     <div className="signin-container">
+      <div className="container-header-edituser">
       <h1>Mi Perfil</h1>
+      <button onClick={() => navigate('/users')} className="back-button"><FaTimesCircle style={{ width: '98%', height: '30px'}}/></button>
+      </div>
       <form onSubmit={handleSubmit}>
+      <div className="form-row">
         <div className="input-container">
             <FaUserCircle className="input-icon" />
             <input type="text" value={formData.firstName} onChange={(e) => handleInputChange('firstName', e.target.value)} placeholder="Nombre" required />
@@ -102,6 +106,8 @@ const EditUserScreen = () => {
         <FaUserCircle className="input-icon" />
             <input type="text" value={formData.lastName} onChange={(e) => handleInputChange('lastName', e.target.value)} placeholder="Apellido" required />
         </div>
+        </div>
+        <div className="form-row">
         <div className="input-container">
         <FaEnvelope className="input-icon" />
             <input type="email" value={formData.email} placeholder="Correo" readOnly />
@@ -120,8 +126,10 @@ const EditUserScreen = () => {
               required
             />
         </div>
+        </div>
+        <div className="form-row">
         <div className="input-container">
-            <select value={formData.department} onChange={(e) => handleInputChange('department', e.target.value)} style={{ width: '98%', height: '36px', border: '1px solid #ccc', borderRadius: '5px'}} required>
+            <select value={formData.department} onChange={(e) => handleInputChange('department', e.target.value)} style={{ width: '98%', height: '36px', border: ' #ccc', borderRadius: '5px',color: '#06005E'}} required>
               <option value="" disabled>
                 Selecciona un departamento
               </option>
@@ -136,20 +144,14 @@ const EditUserScreen = () => {
         <FaCity className="input-icon" />
             <input type="text" value={formData.city} onChange={(e) => handleInputChange('city', e.target.value)} required />
         </div>
-        <button type="submit" className="submit-button">Guardar Cambios</button>
-      </form>
-  
-      {userId === user.uid && ( // Renderizar solo si el usuario está editando su propio perfil
-        <div>
-          <button onClick={handleEditEmail} className="back-button">Cambiar Correo</button>
-          <button onClick={handleEditPassword} className="back-button">Cambiar Contraseña</button>
         </div>
-      )}
-      
-      <div className="container-forgot-password">
-      <FaArrowLeft className="input-icon" />
-        <button onClick={() => navigate('/users')} className="back-button"> Volver</button>
-      </div>
+        <div className='buttons-form'>
+        <button type="submit" className="submit-button"><FaSave/>Guardar Cambios</button>
+        {userId === user.uid && ( // Renderizar solo si el usuario está editando su propio perfil
+          <button onClick={handleEditPassword} className="submit-button"><FaBuromobelexperte/>Cambiar Contraseña</button>
+        )}
+        </div>
+      </form>
     </div>
   );
 }  

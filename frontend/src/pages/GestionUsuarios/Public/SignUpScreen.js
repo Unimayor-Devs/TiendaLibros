@@ -2,7 +2,8 @@ import React, { useState, useEffect } from 'react';
 import { getAuth, createUserWithEmailAndPassword, sendEmailVerification } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { getFirestore, collection, getDocs, setDoc, doc } from 'firebase/firestore'; // Importa Firestore
-import { FaLock, FaEye, FaEyeSlash, FaUserCircle, FaEnvelope,FaPhone, FaBuilding, FaCity, FaArrowLeft  } from 'react-icons/fa';
+import { FaLock, FaEye, FaEyeSlash, FaUserCircle, FaEnvelope,FaPhone, FaBuilding, FaCity, FaArrowLeft, FaTimesCircle  } from 'react-icons/fa';
+import './SignUpScreen.css';
 
 const SignUpScreen = () => {
   const [email, setEmail] = useState('');
@@ -131,8 +132,12 @@ const SignUpScreen = () => {
 
   return (
     <div className="signin-container">
+      <div className="container-header-edituser">
       <h1>Registro de Usuario</h1>
+      <button className="back-button" onClick={() => navigate('/')}><FaTimesCircle  /> </button>
+      </div>
       <form onSubmit={handleSignUp} className="signup-form">
+      <div className="form-row">
         <div className="input-container">
           <FaUserCircle className="input-icon" />
           <input
@@ -153,6 +158,8 @@ const SignUpScreen = () => {
             required
           />
         </div>
+        </div>
+        <div className="form-row">
         <div className="input-container">
           <FaEnvelope className="input-icon" />
           <input
@@ -179,6 +186,8 @@ const SignUpScreen = () => {
             required
           />
         </div>
+        </div>
+        <div className="form-row">
         <div className="input-container">
           <FaLock className="input-icon" />
           <input
@@ -209,6 +218,8 @@ const SignUpScreen = () => {
             <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
           )}
         </div>
+        </div>
+        <div className="form-row">
         <div className="input-container">
           {/* <FaBuilding  className="input-icon" /> */}
           <select style={{ width: '98%', height: '36px', border: '1px solid #ccc', borderRadius: '5px'}}
@@ -236,12 +247,14 @@ const SignUpScreen = () => {
             required
           />
         </div>
+        </div>
+        <div className='btn-form-ri'>
         {error && <p className="error-message">{error}</p>}
         <button type="submit" className="submit-button">Registrarse</button>
+        </div>
       </form>
-      <div className="back-to-main-page">
-        <button className="back-button" onClick={() => navigate('/')}><FaArrowLeft  /> Volver a la página principal</button>
-      </div>
+      
+      
     </div>
   );
 };

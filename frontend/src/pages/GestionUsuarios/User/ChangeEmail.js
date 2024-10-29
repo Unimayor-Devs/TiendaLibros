@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { updateUserEmail } from '../../../services/userService';
 import { useNavigate } from 'react-router-dom';
 import { FaEnvelope, FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'; // Importa los iconos de Font Awesome
-//import "../Public/SignInScreen.css";
+import "../Public/SignInScreen.css";
 
 const ChangeEmail = () => {
   const navigate = useNavigate(); // Obtenemos la función navigate

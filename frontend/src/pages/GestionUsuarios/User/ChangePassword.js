@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { getAuth, updatePassword, reauthenticateWithCredential, EmailAuthProvider } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
 import { FaLock, FaEye, FaEyeSlash } from 'react-icons/fa'; // Importa los iconos de Font Awesome
-//import "../Public/SignInScreen.css";
+import "./ChangePassword.css";
 
 const ChangePassword = () => {
   const navigate = useNavigate();
@@ -84,11 +84,11 @@ const ChangePassword = () => {
   };
 
   return (
-    <div className="signin-container">
+    <div className="signin-container-cp">
       <h2>Cambiar Contraseña</h2>
       {errorMessage && <p style={{ color: 'red' }}>{errorMessage}</p>}
       <form onSubmit={handlePasswordChange} className="email-form">
-        <div className="input-container">
+        <div className="input-container-cp">
           <FaLock className="input-icon" />
           <input
             type={showPassword ? 'text' : 'password'}
@@ -103,7 +103,7 @@ const ChangePassword = () => {
             <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
           )}
         </div>
-        <div className="input-container">
+        <div className="input-container-cp">
           <FaLock className="input-icon" />
           <input
             type={showPassword ? 'text' : 'password'}
@@ -118,7 +118,7 @@ const ChangePassword = () => {
             <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
           )}
         </div>
-        <div className="input-container">
+        <div className="input-container-cp">
           <FaLock className="input-icon" />
           <input
             type={showPassword ? 'text' : 'password'}
@@ -133,8 +133,10 @@ const ChangePassword = () => {
             <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
           )}
         </div>
+        <div className='container-buttons-cahngepass'>
         <button className="button button-primary" type="submit">Guardar</button>
         <button className="button button-danger" type="button" onClick={() => navigate(-1)}>Cancelar</button>
+        </div>
       </form>
     </div>
   );

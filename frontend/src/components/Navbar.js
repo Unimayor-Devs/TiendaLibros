@@ -1,34 +1,45 @@
+// src/components/Navbar.js
 import React, { useContext } from 'react';
 import { Link, useNavigate } from 'react-router-dom';
 import { getAuth, signOut } from 'firebase/auth';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faHome, faUser, faBook, faBoxes, faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
-import './Navbar.css'; // Asegúrate de importar los estilos CSS
-import logo from '../pages/Public/assets/logo.png';
+import { FaSun, FaGlobe, FaMoon } from 'react-icons/fa';
+import './Navbar.css';
+import book from '../../src/images/svg/book.svg';
 import { AuthContext } from '../context/AuthContext';
+import { ThemeContext} from '../context/ThemeContext';
 
 const Navbar = () => {
   const auth = getAuth();
   const navigate = useNavigate();
-  const { userRole } = useContext(AuthContext); // Obtiene el rol del usuario
+  const { userRole } = useContext(AuthContext);
+  const { theme, changeTheme } = useContext(ThemeContext); // Get theme and changeTheme function from context
 
   const handleSignOut = async () => {
     try {
       await signOut(auth);
-      console.log('Usuario cerró sesión exitosamente');
+      console.log('User successfully signed out');
       navigate('/');
     } catch (error) {
-      console.error('Error al cerrar sesión:', error.message);
+      console.error('Error signing out:', error.message);
     }
   };
 
   return (
-    <nav className="navbar">
+    <nav className="Navbar">
       <div className="logo-container">
-        <img src={logo} alt="Logo Unimayor" className="logo" />
-        <p className="logo-text">Tienda de Libros Unimayor</p>
+        <img src={book} alt="Logo" className="logo" />
+        <p>Tienda de Libros Unimayor</p>
       </div>
-      <ul className="navbar-links">
+      <ul>
+        <li>
+          <div className="theme-buttons">
+            <button onClick={() => changeTheme('principal')}><FaSun /> </button>
+            <button onClick={() => changeTheme('daltonismo')}><FaGlobe /> </button>
+            <button onClick={() => changeTheme('dark')}><FaMoon /> </button>
+          </div>
+        </li>
         <li>
           <Link to="/home">
             <FontAwesomeIcon icon={faHome} /> Inicio
@@ -51,7 +62,7 @@ const Navbar = () => {
         </li>
         <li>
           <button className="logout-button" onClick={handleSignOut}>
-            <FontAwesomeIcon icon={faSignOutAlt} /> Salir
+            <FontAwesomeIcon icon={faSignOutAlt} /> Cerrar sesión
           </button>
         </li>
       </ul>

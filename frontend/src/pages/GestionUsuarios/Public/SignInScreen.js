@@ -11,6 +11,7 @@ const SignInScreen = () => {
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
   const [showPassword, setShowPassword] = useState(false);
+   
   const [theme, setTheme] = useState('principal');  // Estado para manejar el tema
   const auth = getAuth();
   const navigate = useNavigate();
@@ -86,8 +87,8 @@ const SignInScreen = () => {
             <button type="submit" className="submit-button">Iniciar Sesión</button>
             
             <div className="links-container">
-              <a href="#" onClick={() => alert("Recuperar Contraseña")}>Olvidé mi contraseña</a>
-              <a href="/register">Registrarse</a>
+              <a href="/password" onClick={() => alert("Recuperar Contraseña")}>Olvidé mi contraseña</a>
+              <a href="/signup">Registrarse</a>
             </div>
           </form>
         </div>

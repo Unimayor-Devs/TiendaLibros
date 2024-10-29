@@ -1,0 +1,146 @@
+:root {
+  --primary-color: #030839; /* Azul por defecto */
+  --background-color: white;
+  --input-border-color: #030839;
+  --button-bg-color: white;
+  --button-text-color: white;
+}
+
+[data-theme="dark"] {
+  --primary-color: #000000; /* Color principal para tema oscuro */
+  --background-color: #404040;
+  --input-border-color: var(--button-text-color);
+  --button-bg-color: #404040;
+  --button-text-color: white;
+}
+
+[data-theme="daltonismo"] {
+  --primary-color: #3A015A; /* Color accesible para daltonismo */
+  --background-color: white;
+  --input-border-color: #3A015A;
+  --button-bg-color: white;
+  --button-text-color: white;
+}
+
+.users-container {
+  max-width: auto;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+.users-container-form {
+  margin: 90px;
+  max-width: auto;
+  padding: 20px;
+  background-color: var(--button-bg-color);;
+  border-radius: 5px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+  overflow: hidden;
+}
+
+.users-content h1 {
+  font-size: 24px;
+  margin-bottom: 20px;
+  text-align: center;
+  color: var(--primary-color);
+}
+
+.user-list-table-container {
+  padding: 20px;
+  background-color: var(--button-text-color);
+  border-radius: 8px;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+}
+
+/* Encabezado de la tabla */
+.data-table .rdt_TableHeadRow {
+  background-color: var(--primary-color);
+  color: var(--button-text-color);
+  font-weight: bold;
+}
+
+.data-table .rdt_TableCol {
+  padding: 10px;
+  text-align: left;
+}
+
+/* Filas de la tabla */
+.data-table .rdt_TableRow {
+  transition: background-color 0.3s;
+}
+
+.data-table .rdt_TableRow:nth-child(odd) {
+  background-color: var(--button-text-color);
+}
+
+.data-table .rdt_TableRow:hover {
+  background-color: var(--button-text-color);
+}
+
+/* Celdas */
+.data-table .rdt_TableCell {
+  padding: 10px;
+}
+
+.sticky-header th {
+  position: sticky;
+  top: 0;
+  background:  var(--primary-color); /* Asegúrate de que el fondo se mantenga al hacer scroll */
+  z-index: 1;
+}
+
+.button {
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s, color 0.3s;
+}
+
+.boton-user{
+  max-height: 40px;
+  background-color:  var(--primary-color);
+  color: var(--button-text-color);
+  padding: 10px;
+  border-radius: 5px;
+  margin: 0 10px;
+  text-align: center;
+  align-items: center;
+  justify-content: center;
+}
+
+.button-primary:hover {
+  background-color:  var(--primary-color);
+}
+
+.button-danger {
+  background-color: #dc3545;
+  color: var(--button-text-color);
+  padding: 10px;
+  border-radius: 5px;
+}
+
+.button-danger:hover {
+  background-color: #c82333;
+}
+
+.error-message {
+  color: red;
+  margin-bottom: 15px;
+}
+
+.search-bar-container {
+  max-height: auto;
+  display: flex;
+  align-items: center;
+  margin-bottom: 10px;
+}
+
+.search-bar {
+  flex-grow: 1;
+  padding: 10px;
+  border: 2px solid  var(--primary-color);
+  border-radius: 5px;
+  align-items: center;
+  margin-bottom: 0px;
+  padding-left: 5px;
+}

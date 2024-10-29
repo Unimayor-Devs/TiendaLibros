@@ -1,5 +1,5 @@
 import React from 'react';
-//import './ModalAlert.css';
+import './ModalAlert.css';
 
 const ModalAlert = ({ title, message, onConfirm, onCancel, showCancelButton }) => {
   return (

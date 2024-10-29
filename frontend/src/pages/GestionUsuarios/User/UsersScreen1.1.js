@@ -6,7 +6,7 @@ import { Button, Modal, ModalBody } from 'reactstrap';
 import { useNavigate  } from 'react-router-dom';
 import Navbar from '../../../components/Navbar';
 
-//import '../Users.css';
+import '../Users.css';
 import { ImBin,ImPencil  } from 'react-icons/im';
 import { RiAccountCircleFill } from "react-icons/ri";
 import { FaUser, FaPencilAlt, FaTrashAlt } from 'react-icons/fa';
