@@ -1,132 +1,97 @@
 import React, { useState } from 'react';
-import { getAuth, signInWithEmailAndPassword, sendPasswordResetEmail } from 'firebase/auth';
+import { getAuth, signInWithEmailAndPassword } from 'firebase/auth';
 import { useNavigate } from 'react-router-dom';
-import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaArrowLeft  } from 'react-icons/fa'; // Importa los iconos de Font Awesome
-//import './SignInScreen.css'; // Importa tu archivo de estilos CSS
+import { FaEnvelope, FaLock, FaEye, FaEyeSlash, FaArrowLeft,FaMoon,FaGlobe,FaSun} from 'react-icons/fa';
+import loginImage from '../../../images/svg/login.svg';
+import book from '../../../images/svg/book.svg';
+import './SignInScreen.css';  // Importa una sola hoja de estilos con las variables de CSS
 
 const SignInScreen = () => {
   const [email, setEmail] = useState('');
   const [password, setPassword] = useState('');
   const [error, setError] = useState(null);
-  const [showPassword, setShowPassword] = useState(false); // Nuevo estado para mostrar/ocultar contraseña
-  const [showForgotPassword, setShowForgotPassword] = useState(false);
+  const [showPassword, setShowPassword] = useState(false);
+  const [theme, setTheme] = useState('principal');  // Estado para manejar el tema
   const auth = getAuth();
   const navigate = useNavigate();
 
-  const handleForgotPassword = async () => {
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert('Se ha enviado un correo electrónico para restablecer tu contraseña. Por favor, revisa tu bandeja de entrada.');
-    } catch (error) {
-      console.error('Error al enviar el correo electrónico de restablecimiento de contraseña:', error.message);
-      setError('No se pudo enviar el correo electrónico de restablecimiento de contraseña. Por favor, inténtalo de nuevo.');
-    }
-  };
-
   const handleSignIn = async (e) => {
     e.preventDefault();
-
     try {
-      const userCredential = await signInWithEmailAndPassword(auth, email, password);
-      const user = userCredential.user;
-
-      console.log('Usuario inició sesión:', user);
+      await signInWithEmailAndPassword(auth, email, password);
       navigate('/home');
     } catch (error) {
-      console.error('Error al iniciar sesión:', error.message);
       setError('Credenciales inválidas. Por favor, inténtalo de nuevo.');
     }
   };
 
-  const handleShowForgotPassword = () => {
-    setShowForgotPassword(true);
-    setError(null);
-  };
-
-  const handleReturnToSignIn = () => {
-    setShowForgotPassword(false);
-    setError(null);
-  };
-
-  const handleResetPassword = async (e) => {
-    e.preventDefault();
-
-    try {
-      await sendPasswordResetEmail(auth, email);
-      alert('Se ha enviado un correo electrónico para restablecer tu contraseña. Por favor, revisa tu bandeja de entrada.');
-      setShowForgotPassword(false);
-    } catch (error) {
-      console.error('Error al enviar el correo electrónico de restablecimiento de contraseña:', error.message);
-      setError('No se pudo enviar el correo electrónico de restablecimiento de contraseña. Por favor, inténtalo de nuevo.');
-    }
-  };
-
-  // Función para alternar la visibilidad de la contraseña
   const togglePasswordVisibility = () => {
     setShowPassword(!showPassword);
   };
 
+  const handleThemeChange = (selectedTheme) => {
+    setTheme(selectedTheme);
+    document.documentElement.setAttribute('data-theme', selectedTheme);  // Cambia el atributo de tema globalmente
+  };
+
   return (
-    <div className="signin-container">
-      <h1>{showForgotPassword ? 'Reestablecimiento de Contraseña' : 'Inicio de Sesión'}</h1>
-      {showForgotPassword ? (
-        <form onSubmit={handleResetPassword}>
-          <div className="input-container">
-            <FaEnvelope className="input-icon" />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
+    <div className={`background-container`}>
+      <div className="background-shape"></div>
+      <div className="signin-wrapper">
+        <div className="signin-left">
+          <div className='container-btn-pages'>
+          <button className="back-button" onClick={() => navigate('/')}><FaArrowLeft /> Volver</button>
+          <button className="back-button" onClick={() => handleThemeChange('principal')}><FaSun/></button>
+          <button className="back-button" onClick={() => handleThemeChange('daltonismo')}><FaGlobe /></button>
+          <button className="back-button" onClick={() => handleThemeChange('dark')}><FaMoon/></button>
           </div>
-          {error && <p>{error}</p>}
-          <button type="submit" className="submit-button">Reestablecer Contraseña</button>
-          <div>
-            <button type="button" className="back-button" onClick={handleReturnToSignIn}>Volver</button>
+          <div className="signin-title">
+            <img src={book} alt="Logo" className="logo" />
+            <div>
+              <h2>Tienda de Libros Unimayor</h2>
+              <h1>Iniciar Sesión</h1>
+            </div>
           </div>
-        </form>
-      ) : (
-        <form onSubmit={handleSignIn}>
-          <div className="input-container">
-            <FaEnvelope className="input-icon" />
-            <input
-              type="email"
-              value={email}
-              onChange={(e) => setEmail(e.target.value)}
-              placeholder="Email"
-              required
-            />
-          </div>
-          <div className="input-container">
-            <FaLock className="input-icon" />
-            <input
-              type={showPassword ? 'text' : 'password'} // Usa el estado showPassword para alternar entre 'text' y 'password'
-              value={password}
-              onChange={(e) => setPassword(e.target.value)}
-              placeholder="Contraseña"
-              required
-            />
-            {/* Agrega el icono de ojo para mostrar/ocultar la contraseña */}
-            {showPassword ? (
-              <FaEyeSlash className="password-toggle-icon" onClick={togglePasswordVisibility} />
-            ) : (
-              <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
-            )}
-          </div>
-          {error && <p>{error}</p>}
-          <button type="submit" className="submit-button">Iniciar Sesión</button>
-          <div className="container-forgot-password">
-            <a href="#" className="forgot-password-link" onClick={handleShowForgotPassword}>Olvidé mi contraseña</a>
-          </div>
-        </form>
-      )}
-      {!showForgotPassword && (
-        <div className="back-to-main-page">
-          <button className="back-button" onClick={() => navigate('/')}><FaArrowLeft  /> Volver a la página principal</button>
+          <img src={loginImage} alt="Biblioteca" className="signin-image" />
         </div>
-      )}
+        <div className="signin-right">
+          <form onSubmit={handleSignIn}>
+            <div className="input-container">
+              <input
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+                placeholder="Usuario o Correo electrónico"
+                required
+              />
+              <FaEnvelope className="input-icon" />
+            </div>
+            <div className="input-container">
+              <FaLock className="input-icon" />
+              <input
+                type={showPassword ? 'text' : 'password'}
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+                placeholder="Contraseña"
+                required
+              />
+              {showPassword ? (
+                <FaEyeSlash className="password-toggle-icon" onClick={togglePasswordVisibility} />
+              ) : (
+                <FaEye className="password-toggle-icon" onClick={togglePasswordVisibility} />
+              )}
+            </div>
+            {error && <p className="error-message">{error}</p>}
+            
+            <button type="submit" className="submit-button">Iniciar Sesión</button>
+            
+            <div className="links-container">
+              <a href="#" onClick={() => alert("Recuperar Contraseña")}>Olvidé mi contraseña</a>
+              <a href="/register">Registrarse</a>
+            </div>
+          </form>
+        </div>
+      </div>
     </div>
   );
 };
